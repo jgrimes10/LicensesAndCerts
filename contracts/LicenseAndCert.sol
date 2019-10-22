@@ -53,7 +53,7 @@ contract LicenseAndCert {
     // Runs once, upon deployment
     constructor() public {
         // Seed the starting data here
-        // addLicense()
+        addLicense("My frist license", "NC", "The best license", 100, 85, 12, 8, "9x8747839hg1", now);
     }
 
     function addLicense(string memory _professionalRole, string memory _state,
