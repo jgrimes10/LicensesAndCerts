@@ -10,6 +10,16 @@ import { LicenselistComponent } from './components/licenselist/licenselist.compo
 import { NewLicenseModalComponent } from './components/new-license-modal/new-license-modal.component';
 import { ConfirmModalComponent } from './components/confirm-modal/confirm-modal.component';
 
+import {
+  MatSidenavModule,
+  MatListModule,
+  MatButtonModule,
+  MatToolbarModule,
+  MatExpansionModule,
+  MatFormFieldModule,
+  MatMenuModule
+} from '@angular/material';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,7 +32,14 @@ import { ConfirmModalComponent } from './components/confirm-modal/confirm-modal.
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatSidenavModule,
+    MatListModule,
+    MatButtonModule,
+    MatToolbarModule,
+    MatExpansionModule,
+    MatFormFieldModule,
+    MatMenuModule
   ],
   providers: [],
   bootstrap: [AppComponent]
