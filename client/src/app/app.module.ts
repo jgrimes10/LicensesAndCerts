@@ -9,6 +9,7 @@ import { WalletlistComponent } from './components/walletlist/walletlist.componen
 import { LicenselistComponent } from './components/licenselist/licenselist.component';
 import { NewLicenseModalComponent } from './components/new-license-modal/new-license-modal.component';
 import { ConfirmModalComponent } from './components/confirm-modal/confirm-modal.component';
+import { MatExpansionModule } from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { ConfirmModalComponent } from './components/confirm-modal/confirm-modal.
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatExpansionModule
   ],
   providers: [],
   bootstrap: [AppComponent]
