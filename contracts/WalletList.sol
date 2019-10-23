@@ -2,7 +2,11 @@ pragma solidity ^0.5.0;
 
 contract WalletList {
 
-    address[] public walletList;
+    constructor() public {
+        addWallet("firstname1", "lastname1", 0xb3848590f10e042C47448d17A44c6bD66762A25c);
+    }
+
+    mapping(uint => Wallet) public wallet;
 
     uint public walletCount = 0;
 
@@ -14,8 +18,6 @@ contract WalletList {
         bool deleted;
     }
 
-    mapping(uint => Wallet) public wallets;
-
     event addWalletToList(
         uint id,
         string firstName,
@@ -26,27 +28,18 @@ contract WalletList {
 
     function addWallet(string memory _firstName, string memory _lastName, address _walletAddressToAdd) public {
     walletCount++;
-    wallets[walletCount] = Wallet(walletCount, _firstName, _lastName, _walletAddressToAdd, false);
+    wallet[walletCount] = Wallet(walletCount, _firstName, _lastName, _walletAddressToAdd, false);
     emit addWalletToList(walletCount, _firstName, _lastName, _walletAddressToAdd, false);
     }
 
     event removeWalletFromList(
-        uint id
-    );
-
-    event getWalletByAddress(
         uint id,
-        string firstName,
-        string lastName,
-        address walletAddress,
         bool deleted
     );
 
-    function removeWallet() {
-
-    }
-
-    function getWallet() {
-
+    function removeWallet(uint _idToRemove) public {
+        Wallet memory _walletToBeRemoved = wallet[_idToRemove];
+        _walletToBeRemoved.deleted = true;
+        emit removeWalletFromList(_idToRemove, _walletToBeRemoved.deleted);
     }
 }
