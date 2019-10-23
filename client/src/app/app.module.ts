@@ -9,7 +9,16 @@ import { WalletlistComponent } from './components/walletlist/walletlist.componen
 import { LicenselistComponent } from './components/licenselist/licenselist.component';
 import { NewLicenseModalComponent } from './components/new-license-modal/new-license-modal.component';
 import { ConfirmModalComponent } from './components/confirm-modal/confirm-modal.component';
-import { MatExpansionModule } from '@angular/material';
+
+import {
+  MatSidenavModule,
+  MatListModule,
+  MatButtonModule,
+  MatToolbarModule,
+  MatExpansionModule,
+  MatFormFieldModule,
+  MatMenuModule
+} from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -24,7 +33,13 @@ import { MatExpansionModule } from '@angular/material';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MatExpansionModule
+    MatSidenavModule,
+    MatListModule,
+    MatButtonModule,
+    MatToolbarModule,
+    MatExpansionModule,
+    MatFormFieldModule,
+    MatMenuModule
   ],
   providers: [],
   bootstrap: [AppComponent]

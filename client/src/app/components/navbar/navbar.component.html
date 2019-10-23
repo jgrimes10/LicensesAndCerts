@@ -1,1 +1,21 @@
-<p>navbar works!</p>
+<mat-toolbar color="primary">
+    <mat-toolbar-row>
+        <span>Licenses & Certifications</span>
+
+        <!-- Link buttons -->
+        <button mat-flat-button color="primary" routerLink="">Home</button>
+        <button mat-flat-button color="primary" routerLink="/wallet-list">Other</button>
+        <button mat-flat-button color="primary" [matMenuTriggerFor]="menu">Account</button>
+        <mat-menu #menu="matMenu">
+            <button mat-menu-item *ngIf="!loading">
+                <small>Wallet Address: {{this.accounts[0]}}</small>
+            </button>
+            <button mat-menu-item>Logout</button>
+        </mat-menu>
+
+        <span class="spacer"></span>
+        <button mat-icon-button aria-label="github link" onclick="window.open('https://github.com/jgrimes10/LicensesAndCerts/')">
+            <i class="fab fa-github"></i>
+        </button>
+    </mat-toolbar-row>
+</mat-toolbar>

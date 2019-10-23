@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
+import { WEB3 } from '../../web3';
+import Web3 from 'web3';
 
 @Component({
   selector: 'app-navbar',
@@ -6,10 +8,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
+  constructor(@Inject(WEB3) private web3: Web3) {}
 
-  constructor() { }
+  public accounts: any;
+  public loading = true;
 
-  ngOnInit() {
+  myWalletAddress = '';
+
+  async ngOnInit() {
+    const accounts = await this.web3.eth.getAccounts().finally(() => this.loading = false);
+
+    this.accounts = accounts;
   }
 
 }
