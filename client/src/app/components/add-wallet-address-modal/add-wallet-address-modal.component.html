@@ -1,1 +1,22 @@
-<p>add-wallet-address-modal works!</p>
+<h1 mat-dialog-title>Add New Wallet</h1>
+<div mat-dialog-content>
+    <p>First Name</p>
+    <mat-form-field>
+        <input matInput [(ngModel)]="walletToSend.firstName">
+    </mat-form-field>
+
+    <p>LastName</p>
+    <mat-form-field>
+        <input matInput [(ngModel)]="walletToSend.lastName">
+    </mat-form-field>
+
+    <p>Wallet Address To Add</p>
+    <mat-form-field>
+        <input matInput [(ngModel)]="walletToSend.walletAddress">
+    </mat-form-field>
+
+    <div mat-dialog-actions>
+        <button mat-button [mat-dialog-close]="walletToSend">Save</button>
+        <button mat-button (click)="onNoClick()">Cancel</button>
+    </div>
+</div>

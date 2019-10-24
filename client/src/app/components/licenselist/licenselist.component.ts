@@ -132,7 +132,7 @@ export class LicenselistComponent implements OnInit {
       licenseToAdd.reminder,
       licenseToAdd.professionalNumber,
       licenseToAdd.nextRenewalDate
-    ).send( function(error, hash) {
+    ).send(function (error, hash) {
       if (error) {
         console.log(error);
       } else {
@@ -142,13 +142,13 @@ export class LicenselistComponent implements OnInit {
   }
 
   async deleteLicense(id: number) {
-    this.licenseList.methods.removeLicense(id).send( function(error, hash) {
+    this.licenseList.methods.removeLicense(id).send(function (error, hash) {
       if (error) {
         console.log(error);
       } else {
         console.log('Deleting license result: ' + hash);
       }
-    })
+    });
   }
 
   openConfirm(license: LicenseData): void {
