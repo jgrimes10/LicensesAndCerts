@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -17,7 +18,10 @@ import {
   MatToolbarModule,
   MatExpansionModule,
   MatFormFieldModule,
-  MatMenuModule
+  MatMenuModule,
+  MatDialogModule,
+  MatInputModule,
+  MatSelectModule
 } from '@angular/material';
 
 @NgModule({
@@ -39,9 +43,17 @@ import {
     MatToolbarModule,
     MatExpansionModule,
     MatFormFieldModule,
-    MatMenuModule
+    MatMenuModule,
+    MatDialogModule,
+    FormsModule,
+    MatInputModule,
+    MatSelectModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [
+    ConfirmModalComponent,
+    NewLicenseModalComponent
+  ]
 })
 export class AppModule { }
