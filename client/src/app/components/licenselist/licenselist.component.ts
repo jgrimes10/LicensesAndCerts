@@ -1,10 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { ConfirmModalComponent } from '../confirm-modal/confirm-modal.component';
 import { NewLicenseModalComponent } from '../new-license-modal/new-license-modal.component';
 import { LicenseData } from 'src/app/models/license.model';
 
-// import * as States from '../../models/states';
+import { WEB3 } from '../../web3';
+import Web3 from 'web3';
+import { LICENSE_LIST_ADDRESS, LICENSE_LIST_ABI } from '../../config/licenseList.config.js';
 
 @Component({
   selector: 'app-licenselist',
@@ -27,19 +29,32 @@ export class LicenselistComponent implements OnInit {
     deleted: false
   };
 
-  // states = States.States;
+  numberOfLicenses = 0;
+  public accounts: any;
+  allLicenses: LicenseData[] = [];
 
-  constructor(public dialog: MatDialog) { }
+  constructor(
+    public dialog: MatDialog,
+    @Inject(WEB3) private web3: Web3
+  ) { }
 
-  ngOnInit() {
-    // let name = 'alabama';
-    // name = name.toUpperCase();
+  async ngOnInit() {
+    const accounts = await this.web3.eth.getAccounts();
+    this.accounts = accounts;
 
-    // for (let state of this.states) {
-    //   if (state.name === name) {
-    //     console.log(state.abbreviation);
-    //   }
-    // }
+    const licenseList = new this.web3.eth.Contract(LICENSE_LIST_ABI, LICENSE_LIST_ADDRESS);
+    const licenseCount = await licenseList.methods.licenseAndCertCount().call();
+    this.numberOfLicenses = licenseCount;
+    console.log(this.numberOfLicenses);
+
+    for (let index = 1; index <= this.numberOfLicenses; index++) {
+      const license = await licenseList.methods.licenses(index).call();
+
+      console.log(license.professionalRole);
+
+      this.allLicenses.push(license);
+      console.log(this.allLicenses);
+    }
   }
 
   openNewLicenseDialog(): void {
