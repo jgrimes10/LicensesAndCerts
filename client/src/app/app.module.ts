@@ -24,7 +24,7 @@ import {
   MatSelectModule,
   MatCardModule
 } from '@angular/material';
-import { AddWalletAddressModalComponent } from './add-wallet-address-modal/add-wallet-address-modal.component';
+import { AddWalletAddressModalComponent } from './components/add-wallet-address-modal/add-wallet-address-modal.component';
 
 @NgModule({
   declarations: [

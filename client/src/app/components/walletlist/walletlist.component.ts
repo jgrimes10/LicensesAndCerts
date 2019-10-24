@@ -2,7 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { WEB3 } from 'src/app/web3';
 import Web3 from 'web3';
 import { MatDialog } from '@angular/material';
-import { AddWalletAddressModalComponent } from 'src/app/add-wallet-address-modal/add-wallet-address-modal.component';
+import { AddWalletAddressModalComponent } from 'src/app/components/add-wallet-address-modal/add-wallet-address-modal.component';
 import { ConfirmModalComponent } from '../confirm-modal/confirm-modal.component';
 
 import { WALLET_LIST_ADDRESS, WALLET_LIST_ABI } from '../../config/walletList.config.js';
