@@ -21,7 +21,8 @@ import {
   MatMenuModule,
   MatDialogModule,
   MatInputModule,
-  MatSelectModule
+  MatSelectModule,
+  MatCardModule
 } from '@angular/material';
 import { AddWalletAddressModalComponent } from './add-wallet-address-modal/add-wallet-address-modal.component';
 
@@ -49,7 +50,8 @@ import { AddWalletAddressModalComponent } from './add-wallet-address-modal/add-w
     MatDialogModule,
     FormsModule,
     MatInputModule,
-    MatSelectModule
+    MatSelectModule,
+    MatCardModule
   ],
   providers: [],
   bootstrap: [AppComponent],

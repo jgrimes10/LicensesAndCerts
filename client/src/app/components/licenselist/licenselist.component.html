@@ -1,3 +1,57 @@
-<button mat-button (click)="openConfirm()">Delete</button>
+<h2 class="container">My Licenses and Certifications ({{activeLicenseCount}})</h2>
+<mat-divider></mat-divider>
+<div class="container">
+    <span class="spacer">
+            <button mat-flat-button color="primary" (click)="openNewLicenseDialog()" class="addButton">Add new License/Certification</button>
+    </span>
+    <button mat-flat-button color="primary" (click)="addTest()">Add Test</button>
+</div>
 
-<button mat-button (click)="openNewLicenseDialog()">Add new License/Certification</button>
+<div class="container">
+    <mat-accordion>
+        <mat-expansion-panel *ngFor="let license of allLicenses">
+            <mat-expansion-panel-header *ngIf="!license.deleted">
+                <mat-panel-title>
+                    {{license.licenseName}}
+                </mat-panel-title>
+                <mat-panel-description>
+                    
+                </mat-panel-description>
+            </mat-expansion-panel-header>
+
+            <p>
+                State: {{license.state}}
+            </p>
+            <p>
+                Professional Role: {{license.professionalRole}}
+            </p>
+            <p>
+                Total Hours Required: {{license.totalHoursRequired}}
+            </p>
+            <p>
+                Total Online Hours Accepted: {{license.totalOnlineHoursAccepted}}
+            </p>
+            <p>
+                Renewal Period: {{license.renewalPeriod}}
+            </p>
+            <p>
+                Reminder: {{license.reminder}}
+            </p>
+            <p>
+                Professional Number: {{license.professionalNumber}}
+            </p>
+            <p>
+                Next Renewal Date: {{license.nextRenewalDate}}
+            </p>
+
+            <mat-action-row>
+                <button mat-icon-button>
+                    <i class="fas fa-edit"></i>
+                </button>
+                <button mat-icon-button color="warn" (click)="openConfirm(license)">
+                    <i class="fas fa-trash"></i>
+                </button>
+            </mat-action-row>
+        </mat-expansion-panel>
+    </mat-accordion>
+</div>
