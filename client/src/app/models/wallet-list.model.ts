@@ -1,4 +1,4 @@
-export interface LicenseData {
+export interface WalletData {
     address: string;
     firstName: string;
     lastName: string;

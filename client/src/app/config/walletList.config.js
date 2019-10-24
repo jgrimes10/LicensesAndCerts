@@ -1,6 +1,6 @@
-export const LICENSE_LIST_ADDRESS = '0x689E0d515a90f5F80b4494c3DCB4F0bb95d12f7d';
+export const WALLET_LIST_ADDRESS = '0x106B6c87c6cd34634B308E5f10Df3FeaF430cAFc';
 
-export const LICENSE_LIST_ABI = [
+export const WALLET_LIST_ABI = [
     {
         "constant": true,
         "inputs": [],
