@@ -7,6 +7,8 @@ import { ConfirmModalComponent } from '../confirm-modal/confirm-modal.component'
 
 import { WALLET_LIST_ADDRESS, WALLET_LIST_ABI } from '../../config/walletList.config.js';
 import { WalletData } from 'src/app/models/wallet-list.model';
+import { WalletDataToSend } from 'src/app/models/walletDataToSend.model';
+import { Contract } from 'web3-eth-contract';
 
 
 @Component({
@@ -16,11 +18,16 @@ import { WalletData } from 'src/app/models/wallet-list.model';
 })
 export class WalletlistComponent implements OnInit {
 
-  walletList: WalletData = {
-    address: '0x2342k3jn',
+  wallet: WalletData = {
+    id: 1,
+    walletAddress: '0x2342k3jn',
     firstName: 'the first name',
-    lastName: 'the last name'
+    lastName: 'the last name',
+    deleted: false
   };
+
+  walletList: Contract;
+
 
   numberOfWallets = 0;
   public accounts: any;
@@ -35,20 +42,41 @@ export class WalletlistComponent implements OnInit {
     const accounts = await this.web3.eth.getAccounts();
     this.accounts = accounts;
 
-    const walletList = new this.web3.eth.Contract(WALLET_LIST_ABI, WALLET_LIST_ADDRESS);
+    await this.getWalletList();
+  }
+
+  async getWalletList() {
+    const walletList = new this.web3.eth.Contract(WALLET_LIST_ABI, WALLET_LIST_ADDRESS, {
+      // this is just a default so you don't have to enter it every time you want to call 'send()' on a smart contract method
+      from: this.accounts[0],
+      gasPrice: '2000'
+    });
+    this.walletList = walletList;
     console.log(walletList);
+    // Get total number of wallets, including deleted.
     const walletCount = await walletList.methods.walletCount().call();
     this.numberOfWallets = walletCount;
     console.log(this.numberOfWallets);
 
+    // Empty the allWallets array for refresh.
+    this.allWallets = [];
+
     for (let index = 1; index <= this.numberOfWallets; index++) {
       const wallet = await walletList.methods.wallet(index).call();
 
-      console.log(wallet.firstName);
+      console.log(wallet.walletAddress);
 
       this.allWallets.push(wallet);
       console.log(this.allWallets);
     }
+  }
+
+  async addWalletAddressToBlockchain(wallet: WalletDataToSend) {
+    const result = await this.walletList.methods.addWallet(
+      wallet.firstName,
+      wallet.lastName,
+      wallet.walletAddress)
+      .send();
   }
 
   openAddWalletDialog(): void {
@@ -61,10 +89,12 @@ export class WalletlistComponent implements OnInit {
 
     addWalletDialogRef.afterClosed().subscribe(result => {
       console.log('New dialog closed');
-      if (!result || result.state === undefined) {
+      if (!result) {
         console.log('error');
         return;
       }
+      console.log(result.walletAddress);
+      this.addWalletAddressToBlockchain(result);
     });
   }
 

@@ -1,7 +1,5 @@
-export interface WalletData {
-    id: number;
+export interface WalletDataToSend {
     walletAddress: string;
     firstName: string;
     lastName: string;
-    deleted: boolean;
 }
