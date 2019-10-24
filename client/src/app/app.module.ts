@@ -23,6 +23,7 @@ import {
   MatInputModule,
   MatSelectModule
 } from '@angular/material';
+import { AddWalletAddressModalComponent } from './add-wallet-address-modal/add-wallet-address-modal.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import {
     LicenselistComponent,
     NewLicenseModalComponent,
     ConfirmModalComponent,
+    AddWalletAddressModalComponent,
   ],
   imports: [
     BrowserModule,
@@ -53,7 +55,8 @@ import {
   bootstrap: [AppComponent],
   entryComponents: [
     ConfirmModalComponent,
-    NewLicenseModalComponent
+    NewLicenseModalComponent,
+    AddWalletAddressModalComponent
   ]
 })
 export class AppModule { }
