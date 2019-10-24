@@ -1,1 +1,66 @@
-<p>new-license-modal works!</p>
+<h1 mat-dialog-title>Add New License/Certification</h1>
+<div mat-dialog-content>
+    <p>Professional Role</p>
+    <mat-form-field>
+        <input matInput [(ngModel)]="licenseToSend.professionalRole">
+    </mat-form-field>
+
+    <p>State</p>
+    <mat-form-field>
+        <mat-label>Pick State</mat-label>
+        <mat-select [(value)]="licenseToSend.state" required>
+            <mat-option *ngFor="let state of states" [value]="state.abbreviation">{{state.name}}</mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <p>License Name</p>
+    <mat-form-field>
+        <input matInput [(ngModel)]="licenseToSend.licenseName">
+    </mat-form-field>
+
+    <p>Total Hours Required</p>
+    <mat-form-field>
+        <input type="number" matInput [(ngModel)]="licenseToSend.totalHoursRequired">
+    </mat-form-field>
+
+    <p>Total Online Hours Accepted</p>
+    <mat-form-field>
+        <input matInput type="number" [(ngModel)]="licenseToSend.totalOnlineHoursAccepted">
+    </mat-form-field>
+
+    <p>Renewal Period</p>
+    <mat-form-field>
+        <input matInput type="number" [(ngModel)]="licenseToSend.renewalPeriod">
+    </mat-form-field>
+
+    <p>Reminder</p>
+    <mat-form-field>
+        <input matInput type="number" [(ngModel)]="licenseToSend.reminder">
+    </mat-form-field>
+
+    <p>Professional Number</p>
+    <mat-form-field>
+        <input matInput [(ngModel)]="licenseToSend.professionalNumber">
+    </mat-form-field>
+
+    <p>Next Renewal Date</p>
+    <mat-form-field>
+        <input matInput type="number" [(ngModel)]="licenseToSend.nextRenewalDate">
+    </mat-form-field>
+
+    <div mat-dialog-actions>
+        <button mat-button [mat-dialog-close]="licenseToSend">Save</button>
+        <button mat-button (click)="onNoClick()">Cancel</button>
+    </div>
+</div>
+
+<!-- string professionalRole;
+string state;
+string licenseName;
+uint totalHoursRequired;
+uint totalOnlineHoursAccepted;
+uint renewalPeriod;
+uint reminder;
+string professionalNumber;
+uint nextRenewalDate;
+bool deleted; -->
